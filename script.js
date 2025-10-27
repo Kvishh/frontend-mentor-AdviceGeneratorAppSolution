@@ -1,19 +1,16 @@
 const api = "https://api.adviceslip.com/advice";
-
 const advice = document.querySelector(".advice");
-f();
-// fetch(api)
-//     .then((response) => {
-//         return response.json();
-//     })
-//     .then((data) => {
-//         advice.textContent = data.slip.advice;
-//     });
+const id = document.querySelector(".id");
+const button = document.querySelector(".dice");
+fetchAPI();
+button.addEventListener("click", fetchAPI);
 
-async function f() {
+async function fetchAPI() {
     const resp = await fetch(api);
 
     const myJson = await resp.json();
-    
-    advice.textContent = myJson.slip.advice;
+    console.log(myJson);
+
+    id.textContent = myJson.slip.id;
+    advice.textContent = `"${myJson.slip.advice}"`;
 }
